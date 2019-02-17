@@ -1,0 +1,310 @@
+body {
+    
+    background-image: url("../img/background.png");
+    background-size: cover;
+    
+
+}
+.posicion-magica {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+}
+.galaxybg2 {
+  background-image: url("../img/bg5.gif");
+
+}
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+  color: white;
+  text-align: center;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  padding: 15px;
+}
+.default_text{
+    color:white !important;
+}
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+        margin-bottom: 0;
+        border-radius: 0;
+        
+      }
+      
+      /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+      .row.content {height: 450px}
+      
+      /* Set gray background color and 100% height */
+      .sidenav {
+        padding-top: 20px;
+        background-color: black;
+        height: 100%;
+      }
+      
+      
+      
+      /* On small screens, set height to 'auto' for sidenav and grid */
+      @media screen and (max-width: 767px) {
+        .sidenav {
+          height: auto;
+          padding: 15px;
+        }
+        .row.content {height:auto;} 
+      }
+
+
+      .modal-backdrop {
+        background-color: rgb(92, 75, 0);
+        filter: 'blur(4px)' !important;
+        -webkit-filter: 'blur(4px)' !important;
+    }
+    
+    .modal-content {
+        background-color: black;
+        color: white;
+        
+    }     
+.player-controls {
+  background-color: white;
+  border-radius: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  box-shadow: 0px 33px 90px 11px rgba(255, 244, 92, 0.6);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.song-panel {
+  background-color: #FCF8FA;
+  border-radius: 0.9375em 10.9375em 0 0;
+  display: flex;
+  height: 4.6875rem;
+  justify-content: flex-end;
+  padding: 0 0.75rem 0.75rem 0.75rem;
+  transform: translate3d(0, 100%, 0);
+  transition: all 1s ease;
+  width: 100%;
+  z-index: 0;
+  box-shadow: 0px 2.0625rem 5.625rem 0.6875em rgba(147, 132, 84, 0.6);
+}
+.song-panel .song-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 14.375rem;
+}
+.song-panel .song-info .song-info__title {
+  color: #444b59;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 0.3125rem;
+}
+.song-panel .song-info .song-info__artist {
+  color: #a5a7af;
+  font-size: 0.7rem;
+  margin-bottom: 0.625em;
+}
+.song-panel .song-info .progress {
+  background: #fff;
+  border-radius: 0.1875em;
+  cursor: ew-resize;
+  display: flex;
+  flex: 10;
+  flex-basis: 100%;
+  max-height: 0.3125em;
+  position: relative;
+  transition: height 0.3s;
+  width: 100%;
+}
+.song-panel .song-info .progress .progress__filled {
+  background: #fc8da8;
+  flex: 0;
+  flex-basis: 0%;
+  width: 50%;
+}
+.song-panel.playing {
+  transform: translate3d(0, 0, 0);
+  transition: all 1s ease;
+}
+
+.buttonjeje {
+  height: 5em;
+  width: 5em;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: black;
+  margin: 0 5px;
+  border-radius: 0.9375em;
+  position: relative;
+}
+
+button:hover, button.playing {
+  background-color: #E0DEE1;
+  color: black;
+}
+
+button.play span.pause {
+  background-color: white;
+  position: absolute;
+  top: 1.4375em;
+  height: 2.125em;
+  width: 0.625em;
+  display: block;
+  border-radius: 0.1875em;
+  opacity: 0;
+  transition: all .5s ease;
+}
+
+button.play span.pause.left {
+  left: 0;
+}
+
+button.play.playing span.pause.left {
+  left: 1.5625em;
+  opacity: 1;
+  transition: left .5s ease, opacity .8s ease;
+}
+
+button.play span.pause.right {
+  right: 0;
+}
+
+button.play.playing span.pause.right {
+  right: 1.5625em;
+  opacity: 1;
+  transition: right .5s ease, opacity .8s ease;
+}
+
+button.play i {
+  opacity: 1;
+  transition: opacity .5s ease;
+}
+
+button.play.playing i {
+  opacity: 0;
+  transition: all .5s ease;
+}
+
+.player-controls {
+  position: relative;
+}
+.player-controls .spinner {
+  height: 8.125em;
+  width: 8.125em;
+  position: absolute;
+  top: -2.5em;
+  left: 0.9375em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.player-controls .spinner.spin {
+  animation: spin 5s linear infinite;
+}
+.player-controls .spinner .spinner__disc {
+  height: 6.875em;
+  width: 6.875em;
+  border-radius: 50%;
+  transition: all 1s ease;
+  background-image: url(http://www.placecage.com/c/127/127);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.player-controls .spinner .spinner__disc.scale {
+  transform: scale(1.17);
+  transition: all 1s ease;
+}
+.player-controls .spinner .spinner__disc.scale .center__disc {
+  color: #e4d6e9;
+  transition: all 1s ease;
+}
+.player-controls .spinner .spinner__disc .center__disc {
+  background-color: white;
+  height: 1.5625em;
+  width: 1.5625em;
+  border-radius: 50%;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1.5;
+  font: 700 1.2rem 'Roboto Slab', sans-serif;
+  padding: 1em 2em;
+  letter-spacing: 0.05rem;
+}
+
+.btn:focus {
+  outline: 2px dotted #55d3dc;
+}
+.draw-border {
+  box-shadow: inset 0 0 0 4px #29c5b0;
+  color: #58a5d1;
+  transition: color 0.25s 0.0833333333s;
+  position: relative;
+}
+
+.draw-border::before,
+.draw-border::after {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.draw-border::before {
+  border-bottom-width: 4px;
+  border-left-width: 4px;
+}
+
+.draw-border::after {
+  border-top-width: 4px;
+  border-right-width: 4px;
+}
+
+.draw-border:hover {
+  color: #2ac3ff;
+}
+
+.draw-border:hover::before,
+.draw-border:hover::after {
+  border-color: #93fff1;
+  transition: border-color 0s, width 0.25s, height 0.25s;
+  width: 100%;
+  height: 100%;
+}
+
+.draw-border:hover::before {
+  transition-delay: 0s, 0s, 0.25s;
+}
+
+.draw-border:hover::after {
+  transition-delay: 0s, 0.25s, 0s;
+}
+
+
+
