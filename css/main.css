@@ -18,11 +18,12 @@ footer {
   position: fixed;
   left: 0;
   bottom: 0;
+  max-height: 50px !important;
   height: 50px;
   width: 100%;
   color: white;
   text-align: center;
-  background-color: rgb(0, 0, 0);
+  background-color: black;
   color: white;
   padding: 15px;
 }
@@ -33,7 +34,10 @@ footer {
     .navbar {
         margin-bottom: 0;
         border-radius: 0;
-        
+        -webkit-box-shadow: 0px 0px 30px 1px #958700;
+        -moz-box-shadow: 0px 0px 30px 1px #958700;
+        box-shadow: 0px 0px 30px 1px #958700;
+        border-color: #958700;
       }
       
       /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
