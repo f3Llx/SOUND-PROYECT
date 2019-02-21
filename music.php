@@ -43,19 +43,19 @@ require_once("main.php");
                 <div class="collapse navbar-collapse default_text" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li><a href="about.php">About</a></li>
-                        <li><a class="active" href="music.php">Music!</a></li>
+                        <li class="active"><a  href="music.php">Music!</a></li>
                         <li><a href="contact.php">Contact</a></li>
-                        
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                    <img src="<?php echo $_SESSION["current_user_img"]; ?>" height="50px" width="50px" class="w3-circle w3-right">
                         
-                        <a class=" w3-button" data-toggle="modal" data-target="#insertme"">
+                        <a class=" w3-button w3-right" onclick="abretesesamo2()">
+                        <span class="glyphicon glyphicon-th-list"></span> <?php echo $_SESSION["username"];?>
+                        </a>
+                        <a class=" w3-button w3-right" data-toggle="modal" data-target="#insertme"">
                             Upload
                         </a>
-                        <a class=" w3-button" onclick="abretesesamo2()">
-                            <?php echo $_SESSION["username"];?>
-                        </a>
-                        <img src="<?php echo $_SESSION["current_user_img"]; ?>" height="50px" width="50px" class="w3-circle">
+                        
                     </ul>
                 </div>
             </div>

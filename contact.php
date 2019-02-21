@@ -28,28 +28,35 @@ require_once("main.php");
 <body>
 
 <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <img src="img/skulllogo.png" height="50px" width="50px">
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        
-        <li><a href="about.php">About</a></li>
-        <li><a href="music.php">Music!</a></li>
-        <li class="active"><a href="contact.php">Contact</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-      <a class="w3-right w3-button" onclick="abretesesamo2()"><?php echo $_SESSION["username"];?></i></a>
-      </ul>
-    </div>
-  </div>
-</nav>
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>                        
+                     </button>
+                    <img src="img/skulllogo.png" height="50px" width="50px">
+                </div>
+                <div class="collapse navbar-collapse default_text" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="about.php">About</a></li>
+                        <li ><a  href="music.php">Music!</a></li>
+                        <li class="active"><a href="contact.php">Contact</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                    <img src="<?php echo $_SESSION["current_user_img"]; ?>" height="50px" width="50px" class="w3-circle w3-right">
+                        
+                        <a class=" w3-button w3-right" onclick="abretesesamo2()">
+                        <span class="glyphicon glyphicon-th-list"></span> <?php echo $_SESSION["username"];?>
+                        </a>
+                        <a class=" w3-button w3-right" data-toggle="modal" data-target="#insertme"">
+                            Upload
+                        </a>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
 <div id="user_settings" class=" w3-hide galaxybg2 posicion-magica">
 
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
@@ -90,7 +97,41 @@ require_once("main.php");
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
 </footer>
+        <!-- Modal de insercion -->
+        <div class="modal fade" id="insertme" role="dialog">
+        <div class="modal-dialog">
 
+            <!-- Modal content-->
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <center>
+                        <img src="img/skulllogo.png" height="200px" width="200px">
+                    </center>
+                    <h4 class="modal-title usernameCSS2">Song Uploader!</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- FORMULARIO DE REGISTRO!  -->
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <label >Tittle:</label>
+                            <input placeholder="Give your song a cool Tittle" style="font-family: Arial, Helvetica, sans-serif;" type="text" class="form-control" name="tittle">
+                        </div>
+                        <div class="form-group">
+                            <label >Cover:</label>
+                            <input placeholder="Submit your img Url!" style="font-family: Arial, Helvetica, sans-serif;" type="text" class="form-control" name="cover">
+                        </div>
+
+                        <div class="form-group">
+                            <label >SONG:</label>
+                            <input type="file" name="fileToUpload" >
+                        </div>
+                        
+                        <button class="btn draw-border" type="submit" name="upload">Submit</button>
+                        <button type="button" class="btn btn-default  pull-right" data-dismiss="modal">Close</button>
+                    </form>
+                    <!-- FIN FORMULARIO DE REGISTRO!  -->
 </body>
 
 <script src="dist/swapdogs.min.js"></script>
