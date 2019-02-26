@@ -14,7 +14,7 @@ session_start();
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link type="text/css" rel="stylesheet" href="css/main.css" />
         <link type="text/css" rel="stylesheet" href="css/hover.css" />
-        <script type="text/javascript" src="js/main.js"></script>
+        
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     </head>
@@ -87,9 +87,10 @@ if(empty($_SESSION["username"])){
                         <i class="fa fa-search" id="searchbar-icon" aria-hidden="true"></i>
                             <i class="fa fa-times" id="searchbar-cross" aria-hidden="true"></i>
 </div></h1>
+                    <div id="Search_Response" >
                     <?php
                     foreach($data as $row){?>
-                        <div class="w3-container w3-card w3-round w3-margin TEXTO"><br>
+                        <div class="w3-container w3-card w3-round w3-margin TEXTO w3-animate-bottom"><br>
                             <img src="<?=$row['username_img_url']?>" alt="Avatar" class="w3-left w3-circle w3-margin-right hvr-rotate" style="width:60px;height:75px;"><br><br>
                             <span class="w3-right w3-opacity">
                             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
@@ -111,8 +112,9 @@ if(empty($_SESSION["username"])){
                             </p>
                         </div>
                         <?php } ?>
+                    </div>
                 </div>
-                <div class="col-sm-2 sidenav">
+                <div class="col-sm-2 sidenav"  >
                     <div class="well">
                         <p>ADS</p>
                     </div>
@@ -170,8 +172,6 @@ if(empty($_SESSION["username"])){
     </body>
 
     <script>
-
-
         function abretesesamo2() {
             var x = document.getElementById("user_settings");
             if (x.className.indexOf("w3-show") == -1) {
@@ -190,11 +190,39 @@ if(empty($_SESSION["username"])){
   
   $('#searchbar-cross').click(function(){
     $('#searchbar-input').animate({width: 'toggle'});
+    $("#searchbar-input").val("");
     $("#searchbar-cross").toggle();
     $("#searchbar-icon").toggle(500);
   });
   
 });
+
+var lastValue = '';
+function search_it(){
+    if ($("#searchbar-input").val() != lastValue) {
+        lastValue = $("#searchbar-input").val();
+        ajax_this();
+     
+    }
+}
+function ajax_this(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status ==200){
+            console.log("jejeje2");
+            document.getElementById("Search_Response").innerHTML = this.responseText; 
+        }
+    };
+    xhttp.open("POST", "ajax.php?lastValue="+lastValue, true);
+    xhttp.send(); 
+}
+
+search_it(); 
+setInterval(function(){
+    search_it()
+}, 1500);
+
+
     </script>
 
 

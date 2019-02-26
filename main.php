@@ -44,7 +44,7 @@ $( document ).ready(function() {
 
 
 $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-$data = $pdo->query("SELECT * from user ORDER BY user.id DESC")->fetchAll();
+$data = $pdo->query("SELECT * from user ORDER BY user.id DESC LIMIT 10")->fetchAll();
 
 
 $name_err = $surname_err = $email_err = "";
