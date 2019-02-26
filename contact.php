@@ -21,6 +21,10 @@ session_start();
 
 <?php
 require_once("main.php");
+if(empty($_SESSION["username"])){
+    header("Location: index.php");
+}
+
 
 
 ?>
@@ -52,7 +56,7 @@ require_once("main.php");
                         <a class=" w3-button w3-right" data-toggle="modal" data-target="#insertme"">
                             Upload
                         </a>
-                        
+
                     </ul>
                 </div>
             </div>

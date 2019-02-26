@@ -17,6 +17,79 @@ session_start();
     <script type="text/javascript" src="js/main.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
+<script>
+    // Create a new instance of an audio object and adjust some of its properties
+   
+
+
+
+    function initMp3Player() {
+        audio.crossOrigin = "anonymous";
+        document.getElementById('audio_box').appendChild(audio);
+        context = new AudioContext(); // AudioContext object instance
+        analyser = context.createAnalyser(); // AnalyserNode method
+        canvas = document.getElementById('analyser_render');
+        ctx = canvas.getContext('2d');
+        // Re-route audio playback into the processing graph of the AudioContext
+        source = context.createMediaElementSource(audio);
+        source.connect(analyser);
+        analyser.connect(context.destination);
+        frameLooper();
+    }
+    // frameLooper() animates any style of graphics you wish to the audio frequency
+    // Looping at the default frame rate that the browser provides(approx. 60 FPS)
+    function frameLooper() {
+        window.webkitRequestAnimationFrame(frameLooper);
+        fbc_array = new Uint8Array(analyser.frequencyBinCount);
+        analyser.getByteFrequencyData(fbc_array);
+        
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+        ctx.fillStyle = 'white'; // Color of the bars
+        bars = 100;
+        for (var i = 0; i < bars; i++) {
+            bar_x = i * 3;
+            bar_width = 2;
+            bar_height = -(fbc_array[i] / 2);
+            //  fillRect( x, y, width, height ) // Explanation of the parameters below
+            ctx.fillRect(bar_x, canvas.height, bar_width, bar_height);
+            
+                
+        }
+    }
+    
+    var audio = new Audio();
+    audio.src = 'song.mp3';
+    audio.controls = false;
+    audio.loop = true;
+    // Establish all variables that your Analyser will use
+    var canvas, ctx, source, context, analyser, fbc_array, bars, bar_x, bar_width, bar_height;
+    // Initialize the MP3 player after the page loads all of its HTML into the window
+    
+    
+    function playAudio() {
+    console.log("dabn");
+    audio.play();
+    audio.crossOrigin = "anonymous";
+        document.getElementById('audio_box').appendChild(audio);
+        context = new AudioContext(); // AudioContext object instance
+        analyser = context.createAnalyser(); // AnalyserNode method
+        canvas = document.getElementById('analyser_render');
+        ctx = canvas.getContext('2d');
+        // Re-route audio playback into the processing graph of the AudioContext
+        source = context.createMediaElementSource(audio);
+        source.connect(analyser);
+        analyser.connect(context.destination);
+        frameLooper();
+
+}
+
+    
+    
+
+
+
+
+</script>
 
 
 <?php
@@ -25,8 +98,12 @@ require_once("main.php");
 
 ?>
 
-<body>
 
+<body>
+<audio id="my_audio">
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+<div id="audio_box"></div>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -35,7 +112,7 @@ require_once("main.php");
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-     <img src="img/skulllogo.png" height="50px" width="50px">
+     <img src="img/skulllogo.png" height="50px" width="50px" >
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -74,7 +151,8 @@ require_once("main.php");
       <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p>
     </div>
-    <div class="col-sm-8 text-left"> 
+    <div class="col-sm-8 text-center"> 
+    <img src="img/skulllogo.png" height="200px" width="200px" id="dank" onclick="playAudio()" >
       <h1>Welcome</h1>
       <p>You just came across the best musicServer out there. make yourself an account and start now!</p>
       <hr>
@@ -91,7 +169,7 @@ require_once("main.php");
     </div>
   </div>
 </div>
-
+<canvas id="analyser_render"></canvas>
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
 </footer>
@@ -168,6 +246,7 @@ require_once("main.php");
 
 
 </script>
+
 
 
 </html>

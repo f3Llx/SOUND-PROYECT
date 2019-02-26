@@ -24,7 +24,10 @@
       $newmusicdata1=($_SESSION["musicData1"]);
       $newmusicdata2=0;
       $newmusicdata3=-1;
-      
+      if(empty($_SESSION["username"])){
+         header("Location: index.php");
+     }
+   
       
       
       ?>
@@ -141,7 +144,7 @@
                         <div class="well text-left ">
                            <h1 class="hvr-forward">All <?php echo $_SESSION["this_artist"];?>´s Songs :</h1>
                         </div>
-                        <ul class='playlist--list text-left' style="width:100%;max-height:150px;overflow-y: auto;"">
+                        <ul class='playlist--list text-left' style="width:100%;max-height:150px;overflow-y: auto;">
                            <?php
                               foreach($newmusicdata as $row2){?> 
                            <li  data-id="<?php $newmusicdata3=$newmusicdata3+1; echo$newmusicdata3;  ?>" data-audio="<?=$row2['music']?>">
@@ -286,6 +289,7 @@
           const method = audio.paused ? 'play' : 'pause';
           playing = audio.paused ? true : false;
           audio[method]();
+
       };
       
       const toggleSongPanel = () => {
@@ -355,6 +359,7 @@
           if (playing) trackSwitch = true;
           audioSource.setAttribute('src', track.src);
           audioSource.dataset.trackid = track.id;
+          
           songTitle.innerHTML = track.title;
           songArtist.innerHTML = track.artist;
           spinnerDisc.style.backgroundImage = `url(${track.cover})`;

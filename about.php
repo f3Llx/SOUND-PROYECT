@@ -21,7 +21,11 @@ session_start();
 
 <?php
 require_once("main.php");
+if(empty($_SESSION["username"])){
+    header("Location: index.php");
+}
 ?>
+
 
 <body>
 

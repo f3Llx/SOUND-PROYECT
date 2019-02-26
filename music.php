@@ -22,7 +22,9 @@ session_start();
 
     <?php
 require_once("main.php");
-
+if(empty($_SESSION["username"])){
+    header("Location: index.php");
+}
 
 
 
@@ -79,8 +81,12 @@ require_once("main.php");
                     <p><a href="#">Link</a></p>
                     <p><a href="#">Link</a></p>
                 </div>
-                <div class="col-sm-8 text-left">
-                    <h1>Artists</h1>
+                <div class="col-sm-8 text-left" style="max-height:650px;overflow-y:auto;">
+                    <h1>Artists<div class="searchbar w3-right">
+                    <input type="text" id="searchbar-input">
+                        <i class="fa fa-search" id="searchbar-icon" aria-hidden="true"></i>
+                            <i class="fa fa-times" id="searchbar-cross" aria-hidden="true"></i>
+</div></h1>
                     <?php
                     foreach($data as $row){?>
                         <div class="w3-container w3-card w3-round w3-margin TEXTO"><br>
@@ -174,7 +180,21 @@ require_once("main.php");
                 x.className = x.className.replace(" w3-show", "");
             }
         }
-
+        $(document).ready(function(){
+  
+  $('#searchbar-icon').click(function(){
+    $('#searchbar-input').animate({width: 'toggle'});
+    $("#searchbar-icon").toggle();
+    $("#searchbar-cross").toggle(500);
+  });
+  
+  $('#searchbar-cross').click(function(){
+    $('#searchbar-input').animate({width: 'toggle'});
+    $("#searchbar-cross").toggle();
+    $("#searchbar-icon").toggle(500);
+  });
+  
+});
     </script>
 
 

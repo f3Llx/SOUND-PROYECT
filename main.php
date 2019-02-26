@@ -2,19 +2,46 @@
 
 // conexión con base de datos
 require_once("util/functions.php");  
-require_once("util/db_manager.php");  
+require_once("util/db_manager.php");
+
 //get messages XD  
 
 $modalScript7 = "<script>
 $( document ).ready(function() {
     $('#login_failed').modal({show:true});
 });
-</script>";
-$modalScript8 = "<script>
-$( document ).ready(function() {
-    $('#errors_settings').modal({show:true});
-});
-</script>";
+</script>
+<!-- Modal failure! -->
+  <div id='login_failed' class='modal fade' role='dialog' data-backdrop='static'>
+  <div class='modal-dialog'>
+
+    <!-- Modal content-->
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button type='button' class='close' data-dismiss='modal' type='button' >&times;</button>
+      </div>
+      <div class='modal-body'>
+      <h4>Something went wrong
+            <center>
+            <section class='c-container'> 
+  <div class='o-circle c-container__circle o-circle__sign--failure'>
+    <div class='o-circle__sign'></div>  
+  </div>   
+  
+</section>   
+        <h5>__$$%% A C C E S S DENIED!__$$%%</h5>
+            <h5>maybe its your password!</h5>
+            <h5>or your username...</h5>
+            </center>
+     </div>
+      <div class='modal-footer'>
+      <button type='button' class='btn btn-default  pull-right' data-dismiss='modal'>Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Modal end -->";
+
 
 $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 $data = $pdo->query("SELECT * from user ORDER BY user.id DESC")->fetchAll();
@@ -80,8 +107,8 @@ if (isset($_POST['upload'])) {
         $Success=1;
         
     }
-    echo $emptycheck;
-    echo"<br>";
+   echo $tittle_err;
+   echo $Cover_err;
     
     
     
