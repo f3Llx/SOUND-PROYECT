@@ -59,17 +59,24 @@ if(empty($_SESSION["username"])){
                 </div>
             </div>
         </nav>
-<div id="user_settings" class=" w3-hide galaxybg2 posicion-magica">
+        <div id="user_settings" class="  w3-hide galaxybg2 posicion-magica ">
 
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <button class="btn w3-button w3-left" type="submit" name="Log_me_out">
-          <span class="glyphicon glyphicon-log-out"></span> Log out
-        </button><br>
-        <button class="btn w3-button w3-left" type="submit" name="settings">
-          <span class="glyphicon glyphicon-cog"></span> settings 
-        </button>
-        </form>
-    </div>
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <button class="btn w3-button w3-left" type="submit" name="Log_me_out">
+<span class="glyphicon glyphicon-log-out"></span> Log out
+</button></form><br>
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                <input type="hidden"  name="artist_name" value="<?php echo $_SESSION["username"];?>">
+                <input type="hidden"  name="artist_id" value="<?php echo $_SESSION["current_user_id"];?>">
+                <input type="hidden"  name="artist_img" value="<?php echo $_SESSION["current_user_img"]; ?>">
+                <button class="btn w3-button w3-left" type="submit" name="artist_settings">
+                <span class="glyphicon glyphicon-cog"></span> settings 
+                </button>
+                </form>
+
+</button>
+
+</div>
   
 <div class="container-fluid text-center default_text">    
   <div class="row content">

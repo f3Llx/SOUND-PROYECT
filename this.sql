@@ -8,7 +8,12 @@ CREATE TABLE user (
     password varchar(500) NOT NULL,
     username_color varchar(200) DEFAULT '#ffffff',
     username_img_url varchar(500) DEFAULT 'img/phoenix.png',
-    uploader tinyint
+    banner_img_url varchar(500) DEFAULT 'img/phoenix.png',
+    is_artist tinyint DEFAULT '0',
+    biography text (500),
+    link1 varchar(250),
+    link2 varchar(250),
+    link3 varchar (250)
 
 );
 
@@ -19,7 +24,6 @@ CREATE TABLE music_songs (
     artist varchar(50) NOT NULL,
     tittle varchar(50) NOT NULL,
     cover varchar(250) NOT NULL,
-    arraySongNumber int(10)not null
     FOREIGN KEY (userid) REFERENCES user(id)
 );
 

@@ -97,6 +97,19 @@ function register_me($name_r,$lastname_r,$username_r,$email_r,$password_r) {
 
 
 }
+function LookMumImAnArtist($username_id) {
+    
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = 'music';
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $sql_insertRegister_info = "UPDATE `user` SET `is_artist` = '1' WHERE `user`.`id` = '$username_id';";
+    $conn->exec($sql_insertRegister_info);
+    $conn = null;
+
+
+}
 
 
 

@@ -4,7 +4,7 @@ require_once("main.php");
 if(isset($_GET["lastValue"]) ){
     $lastValue=$_GET["lastValue"];
     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $newdata = $pdo->query("SELECT * from user WHERE username LIKE '$lastValue%' ORDER BY user.id DESC")->fetchAll();
+    $newdata = $pdo->query("SELECT * from user WHERE username LIKE '$lastValue%' && is_artist=1 ORDER BY user.id DESC")->fetchAll();
 
 
 

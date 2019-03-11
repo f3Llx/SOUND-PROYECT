@@ -7,44 +7,45 @@ require_once("util/db_manager.php");
 //get messages XD  
 
 $modalScript7 = "<script>
-$( document ).ready(function() {
-    $('#login_failed').modal({show:true});
-});
-</script>
-<!-- Modal failure! -->
-  <div id='login_failed' class='modal fade' role='dialog' data-backdrop='static'>
-  <div class='modal-dialog'>
-
-    <!-- Modal content-->
-    <div class='modal-content'>
-      <div class='modal-header'>
-        <button type='button' class='close' data-dismiss='modal' type='button' >&times;</button>
-      </div>
-      <div class='modal-body'>
-      <h4>Something went wrong
-            <center>
-            <section class='c-container'> 
-  <div class='o-circle c-container__circle o-circle__sign--failure'>
-    <div class='o-circle__sign'></div>  
-  </div>   
+  $( document ).ready(function() {
+      $('#login_failed').modal({show:true});
+  });
+  </script>
+  <!-- Modal failure! -->
+    <div id='login_failed' class='modal fade' role='dialog' data-backdrop='static'>
+    <div class='modal-dialog'>
   
-</section>   
-        <h5>__$$%% A C C E S S DENIED!__$$%%</h5>
-            <h5>maybe its your password!</h5>
-            <h5>or your username...</h5>
-            </center>
-     </div>
-      <div class='modal-footer'>
-      <button type='button' class='btn btn-default  pull-right' data-dismiss='modal'>Close</button>
+      <!-- Modal content-->
+      <div class='modal-content'>
+        <div class='modal-header'>
+          <button type='button' class='close' data-dismiss='modal' type='button' >&times;</button>
+        </div>
+        <div class='modal-body'>
+        <h4>Something went wrong
+              <center>
+              <section class='c-container'> 
+    <div class='o-circle c-container__circle o-circle__sign--failure'>
+      <div class='o-circle__sign'></div>  
+    </div>   
+    
+  </section>   
+          <h5>__$$%% A C C E S S DENIED!__$$%%</h5>
+              <h5>maybe its your password!</h5>
+              <h5>or your username...</h5>
+              </center>
+       </div>
+        <div class='modal-footer'>
+        <button type='button' class='btn btn-default  pull-right' data-dismiss='modal'>Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-  <!-- Modal end -->";
+    <!-- Modal end -->";
+  
 
 
 $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-$data = $pdo->query("SELECT * from user ORDER BY user.id DESC LIMIT 10")->fetchAll();
+$data = $pdo->query("SELECT * from user where is_artist=1 ORDER BY user.id DESC LIMIT 10")->fetchAll();
 
 
 $name_err = $surname_err = $email_err = "";
@@ -88,8 +89,36 @@ if (isset($_POST['Log_me_in'])) {
 
 }
 if (isset($_POST['upload'])) {
+  $modal= "
 
-    
+  <div id='modal1' class='modal fade' role='dialog' data-backdrop='static'>
+    <div class='modal-dialog'>
+  
+      <!-- Modal content-->
+      <div class='modal-content'>
+        <div class='modal-header'>
+          <button type='button' class='close' data-dismiss='modal' type='button' >&times;</button>
+        </div>
+        <div class='modal-body'>
+        <h4>There are some errors...</h4>
+            <h5>You might want to check:</h5>
+            <section class='c-container'> 
+    <div class='o-circle c-container__circle o-circle__sign--failure'>
+      <div class='o-circle__sign'></div>  
+    </div>   
+  </section>        
+                   <h6 class='text-center'> $name_err </h6>
+                   <h6 class='text-center'> $surname_err  </h6>
+                   <h6 class='text-center'>$username_err </h6>
+                   <h6 class='text-center'> $email_err </h6>
+       </div>
+        <div class='modal-footer'>
+          <button type='button' class='btn btn-default' data-toggle='modal' data-target='#register' data-dismiss='modal' >Try again</button>
+        </div>
+      </div>
+    </div>
+  </div>";
+  
     $emptycheck =0;
     if (empty($_POST["tittle"])) {
         $tittle_err = "tittle is required";
@@ -142,6 +171,7 @@ if (isset($_POST['upload'])) {
             echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
             $filepath=$_FILES["fileToUpload"]["name"];
             $music= "music/$filepath";
+            LookMumImAnArtist($userid);
             insertSong($userid, $music, $artist, $tittle, $cover);
             
             
@@ -217,8 +247,37 @@ if (isset($_POST['artist'])) {
     // LMAO TO MUCH CRAP
 
   }
+  if (isset($_POST['artist_settings'])) {
+    unset($_SESSION['this_artist']);
+    unset($_SESSION['this_artistid']);
+    unset($_SESSION['artist_img']);
+    
+    
+    
+    $_SESSION["artist_img"] =$_POST["artist_img"];
+    $_SESSION["this_artist"] =$_POST["artist_name"];
+    $_SESSION["this_artistid"] =$_POST["artist_id"];
+   
+    $artist_id= $_POST["artist_id"];
+    
+    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $musicData = $pdo->query("SELECT music_songs.music,music_songs.tittle,music_songs.id,user.username_color,user.username_img_url,music_songs.artist,music_songs.cover FROM music_songs INNER JOIN user ON music_songs.userid = user.id WHERE user.id =    $artist_id ")->fetchAll();
+    $musicData1 = $pdo->query("SELECT music_songs.music,music_songs.tittle,music_songs.id,user.username_color,user.username_img_url,music_songs.artist,music_songs.cover FROM music_songs INNER JOIN user ON music_songs.userid = user.id WHERE user.id =    $artist_id LIMIT 1")->fetchAll();
+    $_SESSION["musicData"] =$musicData;
+    $_SESSION["musicData1"] =$musicData1;
 
+    header('Location: user_settings.php');
 
+   
+
+    
+    // MUST BE AS AN ARTIST TO UPLOAD SHIT
+    // ADD LIKES
+    // ADD PROFILE VISITS
+    // LMAO TO MUCH CRAP
+
+  }
+  
 
 
 
