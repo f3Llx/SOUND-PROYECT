@@ -18,11 +18,13 @@
 }
 .farbtastic .wheel {
   background: url(../img/wheel.png) no-repeat;
+  
   width: 195px;
   height: 195px;
 }
 .farbtastic .overlay {
   background: url(../img/mask.png) no-repeat;
+  
 }
 .farbtastic .marker {
   width: 17px;

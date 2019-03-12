@@ -27,7 +27,7 @@
       if(empty($_SESSION["username"])){
          header("Location: index.php");
      }
-   
+     
       
       
       ?>
@@ -101,8 +101,8 @@
             <div class="col-sm-7">
                <div class="row">
                   <div class="col-sm-12">
-                     <div class="well" style="background-image: url('img/jeje.png');background-size: cover;" >
-                        <p style="font-size:45px;color:white">.:<?php echo $_SESSION["this_artist"];?>:.</p>
+                     <div class="well" style="background-image: url('<?php echo $_SESSION['artist_banner'];?>');background-size: cover;" >
+                        <p style="font-size:45px;color:<?php echo $_SESSION["artist_color"]?>">.:<?php echo $_SESSION["this_artist"];?>:.</p>
                         <img src="<?php echo $_SESSION["artist_img"];?>" class="img-circle hvr-bounce-in" height="55" width="55" alt="Avatar" id="user_img">
                      </div>
                   </div>

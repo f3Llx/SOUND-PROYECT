@@ -27,6 +27,7 @@ if(empty($_SESSION["username"])){
 
 
 
+
 ?>
 
     <body>
@@ -103,6 +104,8 @@ if(empty($_SESSION["username"])){
                             <input type="hidden"  name="artist_name" value="<?=$row['username']?>">
                             <input type="hidden"  name="artist_id" value="<?=$row['id']?>">
                             <input type="hidden"  name="artist_img" value="<?=$row['username_img_url']?>">
+                            <input type="hidden"  name="artist_banner" value="<?=$row['banner_img_url']?>">
+                            <input type="hidden"  name="artist_color" value="<?=$row['username_color']?>">
                             <button class="btn w3-button w3-left" type="submit" name="artist">
                             <span class="glyphicon glyphicon-log-out"></span> Check Channel
                             </button>
@@ -116,6 +119,7 @@ if(empty($_SESSION["username"])){
                             </p>
                         </div>
                         <?php } ?>
+                        
                     </div>
                 </div>
                 <div class="col-sm-2 sidenav"  >

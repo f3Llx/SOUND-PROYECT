@@ -27,9 +27,9 @@ function update_my_password($username_id, $new_edited_password) {
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $dbname = 'ICSITTER';
+        $dbname = 'music';
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $sql_insertCurrent_info = "UPDATE `icsitter_user` SET `password` = '$new_edited_password' WHERE `icsitter_user`.`id` = '$username_id';";
+        $sql_insertCurrent_info = "UPDATE `user` SET `password` = '$new_edited_password' WHERE `user`.`id` = '$username_id';";
         $conn->exec($sql_insertCurrent_info);
 
         }
@@ -47,9 +47,9 @@ function update_my_color($username_id, $new_edited_color) {
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $dbname = 'ICSITTER';
+        $dbname = 'music';
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $sql_insertCurrent_info = "UPDATE `icsitter_user` SET `username_color` = '$new_edited_color' WHERE `icsitter_user`.`id` = '$username_id';";
+        $sql_insertCurrent_info = "UPDATE `user` SET `username_color` = '$new_edited_color' WHERE `user`.`id` = '$username_id';";
         $conn->exec($sql_insertCurrent_info);
 
         }
@@ -67,9 +67,29 @@ function update_my_img($username_id, $new_edited_img) {
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $dbname = 'ICSITTER';
+        $dbname = 'music';
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $sql_insertCurrent_info = "UPDATE `icsitter_user` SET `username_img_url` = '$new_edited_img' WHERE `icsitter_user`.`id` = '$username_id';";
+        $sql_insertCurrent_info = "UPDATE `user` SET `username_img_url` = '$new_edited_img' WHERE `user`.`id` = '$username_id';";
+        $conn->exec($sql_insertCurrent_info);
+
+        }
+    catch(PDOException $e)
+        {
+        echo $sql_insertCurrent_info . "<br>" . $e->getMessage();
+        }
+    
+    $conn = null;
+
+
+}
+function update_my_banner($username_id, $new_edited_banner) {
+    try {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = 'music';
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $sql_insertCurrent_info = "UPDATE `user` SET `banner_img_url` = '$new_edited_banner' WHERE `user`.`id` = '$username_id';";
         $conn->exec($sql_insertCurrent_info);
 
         }

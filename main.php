@@ -78,8 +78,12 @@ if (isset($_POST['Log_me_in'])) {
     $iduser_find = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $user_id = $iduser_find->query("SELECT id FROM `user` WHERE `username`='$This_user_ID';")->fetch(Pdo::FETCH_COLUMN);
     $user_img = $iduser_find->query("SELECT username_img_url FROM `user` WHERE `username`='$This_user_ID';")->fetch(Pdo::FETCH_COLUMN);
+    $user_banner = $iduser_find->query("SELECT banner_img_url FROM `user` WHERE `username`='$This_user_ID';")->fetch(Pdo::FETCH_COLUMN);
+    $user_color = $iduser_find->query("SELECT username_color FROM `user` WHERE `username`='$This_user_ID';")->fetch(Pdo::FETCH_COLUMN);
     $_SESSION["current_user_img"] =$user_img;
+    $_SESSION["current_user_banner"] =$user_banner;
     $_SESSION["current_user_id"] =$user_id;
+    $_SESSION["current_user_color"] =$user_color;
 
     header('Location: music.php');
     } else {
@@ -221,13 +225,16 @@ if (isset($_POST['artist'])) {
     unset($_SESSION['this_artist']);
     unset($_SESSION['this_artistid']);
     unset($_SESSION['artist_img']);
+    unset($_SESSION['artist_banner']);
+    unset($_SESSION['artist_color']);
     
     
     
     $_SESSION["artist_img"] =$_POST["artist_img"];
     $_SESSION["this_artist"] =$_POST["artist_name"];
     $_SESSION["this_artistid"] =$_POST["artist_id"];
-   
+    $_SESSION["artist_banner"] =$_POST["artist_banner"];
+    $_SESSION["artist_color"] =$_POST["artist_color"];
     $artist_id= $_POST["artist_id"];
     
     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

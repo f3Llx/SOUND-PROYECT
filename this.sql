@@ -8,7 +8,7 @@ CREATE TABLE user (
     password varchar(500) NOT NULL,
     username_color varchar(200) DEFAULT '#ffffff',
     username_img_url varchar(500) DEFAULT 'img/phoenix.png',
-    banner_img_url varchar(500) DEFAULT 'img/phoenix.png',
+    banner_img_url varchar(500) DEFAULT 'img/jeje.png',
     is_artist tinyint DEFAULT '0',
     biography text (500),
     link1 varchar(250),
